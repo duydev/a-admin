@@ -9,25 +9,22 @@ class LoginFormController {
     this.$stateParams = $stateParams
     this.AclService = AclService
 
-    this.registerSuccess = $stateParams.registerSuccess
     this.successMsg = $stateParams.successMsg
     this.loginfailederror = ''
     this.loginfailed = false
-    this.unverified = false
   }
 
   $onInit () {
-    this.email = ''
+    this.username = ''
     this.password = ''
   }
 
   login () {
     this.loginfailederror = ''
     this.loginfailed = false
-    this.unverified = false
 
     let user = {
-      email: this.email,
+      username: this.username,
       password: this.password
     }
 

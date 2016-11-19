@@ -129,17 +129,13 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $this->validate($request, [
-            'email'    => 'required|email',
+            'username'    => 'required',
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
-        $user = User::whereEmail($credentials['email'])->first();
-
-        if (isset($user->email_verified) && $user->email_verified == 0) {
-            return response()->error('Email Unverified');
-        }
+        $user = User::where('username', $credentials['username'])->first();
 
         try {
             if (!$token = JWTAuth::attempt($credentials)) {

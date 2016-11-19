@@ -29,12 +29,6 @@ ngDescribe({
         })
       })
 
-      describe('when /register', function () {
-        it('should go to the register state', function () {
-          goTo('/register')
-          expect(deps.$state.$current.name).toEqual('register')
-        })
-      })
     })
   }
 })

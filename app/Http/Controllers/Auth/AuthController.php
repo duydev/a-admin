@@ -157,20 +157,6 @@ class AuthController extends Controller
         return response()->success(compact('user', 'token', 'abilities', 'userRole'));
     }
 
-    public function verifyUserEmail($verificationCode)
-    {
-        $user = User::whereEmailVerificationCode($verificationCode)->first();
-
-        if (!$user) {
-            return redirect('/#/userverification/failed');
-        }
-
-        $user->email_verified = 1;
-        $user->save();
-
-        return redirect('/#/userverification/success');
-    }
-
     /**
      * Create new user.
      *

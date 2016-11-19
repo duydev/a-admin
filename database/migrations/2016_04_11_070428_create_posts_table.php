@@ -33,6 +33,11 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::table('posts', function (Blueprint $table) {
+           $table->dropForeign(['category_id']);
+        });
         Schema::drop('posts');
+        Schema::enableForeignKeyConstraints();
     }
 }

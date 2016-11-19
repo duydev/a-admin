@@ -1,5 +1,6 @@
 <aside class="main-sidebar">
   <section class="sidebar">
+
     <div class="user-panel">
       <div class="pull-left image">
         <img src="{{vm.userData.avatar}}" class="img-circle" alt="User Image" onError="this.src='//placeholdit.imgix.net/~text?txtfont=monospace,bold&bg=DD4B39&txtclr=ffffff&txt=A&w=45&h=45&txtsize=16'">
@@ -9,6 +10,7 @@
         <a href="javascript:void(0)"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
+
     <form action="#" method="get" class="sidebar-form">
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -18,13 +20,26 @@
         </span>
       </div>
     </form>
+
     <ul class="sidebar-menu">
-      <li class="header">MAIN NAVIGATION</li>
+
+      <li class="header">Menu Chính</li>
+
       <li>
         <a ui-sref='app.landing'>
-          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <i class="fa fa-dashboard"></i> <span>Bảng điều khiển</span>
         </a>
       </li>
+
+      <li class="treeview" ng-show="vm.can('manage.news')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-users"></i> <span>Tin Tức</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li ng-show="vm.can('manage.category')" class="active"><a ui-sref='app.categorylist'><i class="fa fa-circle-o"></i> <span>Chủ Đề</span></a></li>
+        </ul>
+      </li>
+
       <li class="treeview" ng-show="vm.can('manage.users')">
         <a href="javascript:void(0)">
           <i class="fa fa-users"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
@@ -33,6 +48,7 @@
           <li ng-show="vm.can('manage.users')" class="active"><a ui-sref='app.userlist'><i class="fa fa-circle-o"></i> <span>User List</span></a></li>
         </ul>
       </li>
+
       <li class="treeview" ng-show="vm.can('manage.roles') || vm.can('manage.permissions')">
         <a href="javascript:void(0)">
           <i class="fa fa-cog"></i> <span>Settings</span> <i class="fa fa-angle-left pull-right"></i>
@@ -42,6 +58,7 @@
           <li ng-show="vm.can('manage.permissions')"><a ui-sref='app.userpermissions'><i class="fa fa-circle-o"></i> <span>User Permissions</span></a></li>
         </ul>
       </li>
+
       <li class="treeview">
         <a href="javascript:void(0)">
           <i class="fa fa-files-o"></i>

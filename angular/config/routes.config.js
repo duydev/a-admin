@@ -301,33 +301,7 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         bodyClass: 'hold-transition login-page'
       }
     })
-    .state('register', {
-      url: '/register',
-      views: {
-        'layout': {
-          templateUrl: getView('register')
-        },
-        'header@app': {},
-        'footer@app': {}
-      },
-      data: {
-        bodyClass: 'hold-transition register-page'
-      }
-    })
-    .state('userverification', {
-      url: '/userverification/:status',
-      views: {
-        'layout': {
-          templateUrl: getView('user-verification')
-        }
-      },
-      data: {
-        bodyClass: 'hold-transition login-page'
-      },
-      params: {
-        status: null
-      }
-    })
+
     .state('forgot_password', {
       url: '/forgot-password',
       views: {
@@ -354,6 +328,7 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         bodyClass: 'hold-transition login-page'
       }
     })
+
     .state('app.logout', {
       url: '/logout',
       views: {
@@ -369,4 +344,17 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         }
       }
     })
+
+    .state('app.categorylist', {
+      url: '/category-list',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@app': {
+          template: '<category-list></category-list>'
+        }
+      }
+    })
+
 }

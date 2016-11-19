@@ -1,3 +1,5 @@
+import {CategoryEditComponent} from './app/components/category-edit/category-edit.component';
+import {CategoryAddComponent} from './app/components/category-add/category-add.component';
 import { TablesSimpleComponent } from './app/components/tables-simple/tables-simple.component'
 import { UiModalComponent } from './app/components/ui-modal/ui-modal.component'
 import { UiTimelineComponent } from './app/components/ui-timeline/ui-timeline.component'
@@ -27,7 +29,11 @@ import { ForgotPasswordComponent } from './app/components/forgot-password/forgot
 import { LoginFormComponent } from './app/components/login-form/login-form.component'
 import { RegisterFormComponent } from './app/components/register-form/register-form.component'
 
+import { CategoryListComponent } from './app/components/category-list/category-list.component'
+
 angular.module('app.components')
+	.component('categoryEdit', CategoryEditComponent)
+	.component('categoryAdd', CategoryAddComponent)
   .component('tablesSimple', TablesSimpleComponent)
   .component('uiModal', UiModalComponent)
   .component('uiTimeline', UiTimelineComponent)
@@ -56,3 +62,5 @@ angular.module('app.components')
   .component('forgotPassword', ForgotPasswordComponent)
   .component('loginForm', LoginFormComponent)
   .component('registerForm', RegisterFormComponent)
+
+  .component('categoryList', CategoryListComponent)

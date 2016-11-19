@@ -6,7 +6,7 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
   }
 
   var getLayout = (layout) => {
-    return `./views/app/pages/layout/${layout}.page.html`
+    return `./views/app/pages/${layout}/${layout}.page.html`
   }
 
   $urlRouterProvider.otherwise('/home')
@@ -35,15 +35,14 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         bodyClass: ''
       }
     })
+
+    // Trang chủ
     .state('app.home', {
       url: '/home',
       views: {
-        main: {
-          template: '<h1>Xin chao</h1>'
-        },
-        'layout': {},
-        'header@app': {},
-        'footer@app': {}
+        'main@app': {
+          templateUrl: getView('home')
+        }
       }
     })
 
@@ -55,13 +54,13 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       url: '/admin',
       views: {
         'layout': {
-          templateUrl: getLayout('layout')
+          templateUrl: getLayout('admin-layout')
         },
         'header@admin': {
-          templateUrl: getView('header')
+          templateUrl: getView('admin-header')
         },
         'footer@admin': {
-          templateUrl: getView('footer')
+          templateUrl: getView('admin-footer')
         },
         main: {}
       },

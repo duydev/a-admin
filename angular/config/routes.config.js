@@ -345,6 +345,7 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       }
     })
 
+    // Category
     .state('app.categorylist', {
       url: '/category-list',
       data: {
@@ -354,6 +355,35 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         'main@app': {
           template: '<category-list></category-list>'
         }
+      }
+    })
+    .state('app.categoryadd', {
+      url: '/category-add',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@app': {
+          template: '<category-add></category-add>'
+        }
+      },
+      params: {
+        alerts: null
+      }
+    })
+    .state('app.categoryedit', {
+      url: '/category-edit/:categoryId',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@app': {
+          template: '<category-edit></category-edit>'
+        }
+      },
+      params: {
+        alerts: null,
+        categoryId: null
       }
     })
 

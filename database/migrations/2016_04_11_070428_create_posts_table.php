@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('image');
             $table->boolean('status');
-            $table->date('date_added');
+            $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
         });

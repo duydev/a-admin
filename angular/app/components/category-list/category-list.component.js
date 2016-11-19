@@ -32,7 +32,7 @@ class CategoryListController{
 
       let actionsHtml = (data) => {
         return `
-                  <a class="btn btn-xs btn-warning" ui-sref="app.useredit({userId: ${data.id}})">
+                  <a class="btn btn-xs btn-warning" ui-sref="app.categoryedit({categoryId: ${data.id}})">
                       <i class="fa fa-edit"></i>
                   </a>
                   &nbsp
@@ -42,26 +42,26 @@ class CategoryListController{
       }
     }
 
-    delete (userId) {
+    delete (categoryId) {
         let API = this.API
         let $state = this.$state
 
         swal({
-          title: 'Are you sure?',
-          text: 'You will not be able to recover this data!',
+          title: 'Bạn có chắc không?',
+          text: 'Bạn sẽ không thể phục hồi lại dữ liệu!',
           type: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#DD6B55',
-          confirmButtonText: 'Yes, delete it!',
+          confirmButtonText: 'Có, hãy xóa nó!',
           closeOnConfirm: false,
           showLoaderOnConfirm: true,
           html: false
         }, function () {
-          API.one('users').one('user', userId).remove()
+          API.one('category', categoryId).remove()
             .then(() => {
               swal({
-                title: 'Deleted!',
-                text: 'User Permission has been deleted.',
+                title: 'Đã xóa!',
+                text: 'Chủ đề đã được xóa.',
                 type: 'success',
                 confirmButtonText: 'OK',
                 closeOnConfirm: true

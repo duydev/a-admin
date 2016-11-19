@@ -33,7 +33,7 @@ class UserPermissionsController {
 
     let actionsHtml = (data) => {
       return `
-                <a class="btn btn-xs btn-warning" ui-sref="app.userpermissionsedit({permissionId: ${data.id}})">
+                <a class="btn btn-xs btn-warning" ui-sref="admin.userpermissionsedit({permissionId: ${data.id}})">
                     <i class="fa fa-edit"></i>
                 </a>
                 &nbsp

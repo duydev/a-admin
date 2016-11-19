@@ -1,3 +1,6 @@
+import {PostEditComponent} from './app/components/post-edit/post-edit.component';
+import {PostAddComponent} from './app/components/post-add/post-add.component';
+import {PostListComponent} from './app/components/post-list/post-list.component';
 
 import { UserProfileComponent } from './app/components/user-profile/user-profile.component'
 import { UserEditComponent } from './app/components/user-edit/user-edit.component'
@@ -21,6 +24,9 @@ import {CategoryEditComponent} from './app/components/category-edit/category-edi
 import {CategoryAddComponent} from './app/components/category-add/category-add.component';
 
 angular.module('app.components')
+	.component('postEdit', PostEditComponent)
+	.component('postAdd', PostAddComponent)
+	.component('postList', PostListComponent)
 
 
   .component('userProfile', UserProfileComponent)

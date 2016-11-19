@@ -18,7 +18,7 @@ class ForgotPasswordController {
     this.API.all('auth/password/email').post({
       email: this.email
     }).then(() => {
-      this.$state.go('login', { successMsg: `Please check your email for instructions on how to reset your password.` })
+      this.$state.go('admin.login', { successMsg: `Bạn vừa nhận được một email kèm theo link reset lại mật khẩu.` })
     }, (res) => {
       for (var error in res.data.errors) {
         this.serverError += res.data.errors[error] + ' '

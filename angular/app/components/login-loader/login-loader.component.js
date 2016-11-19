@@ -12,7 +12,7 @@ class LoginLoaderController {
 
         AclService.setAbilities(data.abilities)
         $auth.setToken(data.token)
-        $state.go('app.landing')
+        $state.go('admin.landing')
       }
     })
   }

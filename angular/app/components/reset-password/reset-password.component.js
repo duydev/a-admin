@@ -24,7 +24,7 @@ class ResetPasswordController {
     email, token}).then(() => {
       this.isValidToken = true
     }, () => {
-      this.$state.go('app.landing')
+      this.$state.go('admin.dashboard')
     })
   }
 
@@ -39,7 +39,7 @@ class ResetPasswordController {
       }
 
       this.API.all('auth/password/reset').post(data).then(() => {
-        this.$state.go('login', {successMsg: `Your password has been changed, You may now login.`})
+        this.$state.go('admin.login', {successMsg: `Your password has been changed, You may now login.`})
       }, (res) => {
         let alrtArr = []
 

@@ -7,6 +7,8 @@ ngDescribe({
       deps.$location.path(url)
       deps.$rootScope.$digest()
     }
+
+    /*
     describe('path', function () {
       describe('when empty', function () {
         it('should go to the app.landing state 1', function () {
@@ -29,6 +31,6 @@ ngDescribe({
         })
       })
 
-    })
+    }) */
   }
 })

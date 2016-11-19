@@ -47,4 +47,11 @@ $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super']], function 
     $api->put('category', 'CategoryController@update');
     $api->delete('category/{id}', 'CategoryController@delete');
 
+    // Posts
+    $api->get('posts', 'PostsController@getAll');
+    $api->get('post/{id}', 'PostsController@get');
+    $api->post('post', 'PostsController@create');
+    $api->put('post', 'PostsController@update');
+    $api->delete('post/{id}', 'PostsController@delete');
+
 });

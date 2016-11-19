@@ -33,7 +33,7 @@ class UserListsController {
 
     let actionsHtml = (data) => {
       return `
-                <a class="btn btn-xs btn-warning" ui-sref="app.useredit({userId: ${data.id}})">
+                <a class="btn btn-xs btn-warning" ui-sref="admin.useredit({userId: ${data.id}})">
                     <i class="fa fa-edit"></i>
                 </a>
                 &nbsp

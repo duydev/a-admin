@@ -39,7 +39,7 @@ class LoginFormController {
 
         AclService.setAbilities(data.abilities)
         this.$auth.setToken(response.data)
-        this.$state.go('app.landing')
+        this.$state.go('admin.dashboard')
       })
       .catch(this.failedLogin.bind(this))
   }
@@ -48,14 +48,12 @@ class LoginFormController {
     if (res.status == 401) {
       this.loginfailed = true
     } else {
-      if (res.data.errors.message[0] == 'Email Unverified') {
-        this.unverified = true
-      } else {
-        // other kinds of error returned from server
-        for (var error in res.data.errors) {
-          this.loginfailederror += res.data.errors[error] + ' '
-        }
+
+      // other kinds of error returned from server
+      for (var error in res.data.errors) {
+        this.loginfailederror += res.data.errors[error] + ' '
       }
+
     }
   }
 }

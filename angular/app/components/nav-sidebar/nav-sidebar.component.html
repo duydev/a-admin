@@ -13,7 +13,7 @@
 
     <form action="#" method="get" class="sidebar-form">
       <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <input type="text" name="q" class="form-control" placeholder="Tìm kiếm...">
         <span class="input-group-btn">
           <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
           </button>
@@ -26,7 +26,7 @@
       <li class="header">Menu Chính</li>
 
       <li>
-        <a ui-sref='app.landing'>
+        <a ui-sref='admin.dashboard'>
           <i class="fa fa-dashboard"></i> <span>Bảng điều khiển</span>
         </a>
       </li>
@@ -36,7 +36,11 @@
           <i class="fa fa-users"></i> <span>Tin Tức</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li ng-show="vm.can('manage.category')" class="active"><a ui-sref='app.categorylist'><i class="fa fa-circle-o"></i> <span>Chủ Đề</span></a></li>
+
+          <li ng-show="vm.can('manage.category')" class="active"><a ui-sref='admin.categorylist'><i class="fa fa-circle-o"></i> <span>Chủ Đề</span></a></li>
+
+          <li ng-show="vm.can('manage.post')" class="active"><a ui-sref='admin.postlist'><i class="fa fa-circle-o"></i> <span>Bài Viết</span></a></li>
+
         </ul>
       </li>
 
@@ -46,11 +50,11 @@
         </a>
         <ul class="treeview-menu">
 
-          <li ng-show="vm.can('manage.users')" class="active"><a ui-sref='app.userlist'><i class="fa fa-circle-o"></i> <span>Người Dùng</span></a></li>
+          <li ng-show="vm.can('manage.users')" class="active"><a ui-sref='admin.userlist'><i class="fa fa-circle-o"></i> <span>Người Dùng</span></a></li>
 
-          <li ng-show="vm.can('manage.roles')"><a ui-sref='app.userroles'><i class="fa fa-circle-o"></i> <span>Vai Trò</span></a></li>
+          <li ng-show="vm.can('manage.roles')"><a ui-sref='admin.userroles'><i class="fa fa-circle-o"></i> <span>Vai Trò</span></a></li>
 
-          <li ng-show="vm.can('manage.permissions')"><a ui-sref='app.userpermissions'><i class="fa fa-circle-o"></i> <span>Quyền Hạn</span></a></li>
+          <li ng-show="vm.can('manage.permissions')"><a ui-sref='admin.userpermissions'><i class="fa fa-circle-o"></i> <span>Quyền Hạn</span></a></li>
 
         </ul>
       </li>

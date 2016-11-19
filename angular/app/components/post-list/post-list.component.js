@@ -1,12 +1,12 @@
-class CategoryListController{
+class PostListController{
   constructor ($scope, $state, $compile, DTOptionsBuilder, DTColumnBuilder, API) {
     'ngInject'
     this.API = API
     this.$state = $state
 
-    let Category = this.API.all('category')
+    let Posts = this.API.all('posts')
 
-    Category.getList()
+    Posts.getList()
       .then((response) => {
         let dataSet = response.plain()
 
@@ -19,8 +19,8 @@ class CategoryListController{
 
         this.dtColumns = [
           DTColumnBuilder.newColumn('id').withTitle('ID'),
-          DTColumnBuilder.newColumn('name').withTitle('Tên'),
-          DTColumnBuilder.newColumn('slug').withTitle('SEO URL'),
+          DTColumnBuilder.newColumn('title').withTitle('Tiêu đề'),
+          DTColumnBuilder.newColumn('short_content').withTitle('Nội dung'),
           DTColumnBuilder.newColumn(null).withTitle('Hành động').notSortable()
             .renderWith(actionsHtml)
         ]
@@ -34,7 +34,7 @@ class CategoryListController{
 
     let actionsHtml = (data) => {
       return `
-                <a class="btn btn-xs btn-warning" ui-sref="admin.categoryedit({categoryId: ${data.id}})">
+                <a class="btn btn-xs btn-warning" ui-sref="admin.postedit({postId: ${data.id}})">
                     <i class="fa fa-edit"></i>
                 </a>
                 &nbsp
@@ -63,7 +63,7 @@ class CategoryListController{
           .then(() => {
             swal({
               title: 'Đã xóa!',
-              text: 'Chủ đề đã được xóa.',
+              text: 'Bài viết đã được xóa.',
               type: 'success',
               confirmButtonText: 'OK',
               closeOnConfirm: true
@@ -73,14 +73,11 @@ class CategoryListController{
           })
       })
     }
-
-  $onInit(){
-  }
 }
 
-export const CategoryListComponent = {
-    templateUrl: './views/app/components/category-list/category-list.component.html',
-    controller: CategoryListController,
+export const PostListComponent = {
+    templateUrl: './views/app/components/post-list/post-list.component.html',
+    controller: PostListController,
     controllerAs: 'vm',
     bindings: {}
 }

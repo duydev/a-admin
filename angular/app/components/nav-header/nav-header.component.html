@@ -1,7 +1,7 @@
 <header class="main-header">
-  <a href="/" class="logo">
-    <span class="logo-mini"><b>A</b>LT</span>
-    <span class="logo-lg"><b>Admin</b>LTE</span>
+  <a ui-sref="admin" class="logo">
+    <span class="logo-mini"><b>CTXH</b></span>
+    <span class="logo-lg"><b>CTXH</b> HUTECH</span>
   </a>
   <nav class="navbar navbar-static-top">
     <a href="javascript:void(0)" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -192,15 +192,15 @@
         </li>
         <li class="dropdown user user-menu" uib-dropdown>
           <a href="" class="dropdown-toggle" data-toggle="dropdown" uib-dropdown-toggle>
-            <img src="{{vm.userData.avatar}}" class="user-image" alt="User Image" onError="this.src='//placeholdit.imgix.net/~text?txtfont=monospace,bold&bg=DD4B39&txtclr=ffffff&txt=A&w=45&h=45&txtsize=16'">
+            <img src="{{vm.userData.avatar}}" class="user-image" alt="Ảnh đại diện của {{vm.userData.name | capitalize}}" onError="this.src='//placeholdit.imgix.net/~text?txtfont=monospace,bold&bg=DD4B39&txtclr=ffffff&txt=A&w=45&h=45&txtsize=16'">
             <span class="hidden-xs">{{vm.userData.name | capitalize}}</span>
           </a>
           <ul class="dropdown-menu" uib-dropdown-menu>
             <li class="user-header">
-              <img src="{{vm.userData.avatar}}" class="img-circle" alt="User Image" onError="this.src='//placeholdit.imgix.net/~text?txtfont=monospace,bold&bg=DD4B39&txtclr=ffffff&txt=A&w=90&h=90&txtsize=36'">
+              <img src="{{vm.userData.avatar}}" class="img-circle" alt="Ảnh đại diện của {{vm.userData.name | capitalize}}" onError="this.src='//placeholdit.imgix.net/~text?txtfont=monospace,bold&bg=DD4B39&txtclr=ffffff&txt=A&w=90&h=90&txtsize=36'">
               <p>
                 {{vm.userData.name | capitalize}}
-                <small>Member since {{vm.userData.created_at | datemillis |date:'MMMM yyyy' }}</small>
+                <small>Tham gia từ {{vm.userData.created_at | datemillis |date:'MM/yyyy' }}</small>
               </p>
             </li>
             <li class="user-body">
@@ -218,10 +218,10 @@
             </li>
             <li class="user-footer">
               <div class="pull-left">
-                <a ui-sref="app.profile" class="btn btn-default btn-flat">Tài Khoản</a>
+                <a ui-sref="admin.profile" class="btn btn-default btn-flat">Tài Khoản</a>
               </div>
               <div class="pull-right">
-                <a ui-sref="app.logout" class="btn btn-default btn-flat">Đăng Xuất</a>
+                <a ui-sref="admin.logout" class="btn btn-default btn-flat">Đăng Xuất</a>
               </div>
             </li>
           </ul>

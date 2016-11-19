@@ -9,14 +9,19 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
     return `./views/app/pages/layout/${layout}.page.html`
   }
 
-  $urlRouterProvider.otherwise('/')
+  $urlRouterProvider.otherwise('/home')
 
   $stateProvider
+
+  /***************/
+  /* FRONT STATE */
+  /***************/
+
     .state('app', {
       abstract: true,
       views: {
         'layout': {
-          templateUrl: getLayout('layout')
+          templateUrl: getView('main-layout')
         },
         'header@app': {
           templateUrl: getView('header')
@@ -27,29 +32,62 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         main: {}
       },
       data: {
+        bodyClass: ''
+      }
+    })
+    .state('app.home', {
+      url: '/home',
+      views: {
+        main: {
+          template: '<h1>Xin chao</h1>'
+        },
+        'layout': {},
+        'header@app': {},
+        'footer@app': {}
+      }
+    })
+
+  /***************/
+  /* ADMIN STATE */
+  /***************/
+    .state('admin', {
+      //abstract: true,
+      url: '/admin',
+      views: {
+        'layout': {
+          templateUrl: getLayout('layout')
+        },
+        'header@admin': {
+          templateUrl: getView('header')
+        },
+        'footer@admin': {
+          templateUrl: getView('footer')
+        },
+        main: {}
+      },
+      data: {
+        auth: true,
         bodyClass: 'hold-transition skin-blue sidebar-mini'
       }
     })
-    .state('app.landing', {
+    .state('admin.dashboard', {
       url: '/',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
-          templateUrl: getView('landing')
+        'main@admin': {
+          templateUrl: getView('admin-dashboard')
         }
       }
     })
-
-
-    .state('app.profile', {
+    .state('admin.profile', {
       url: '/profile',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-profile></user-profile>'
         }
       },
@@ -57,24 +95,24 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         alerts: null
       }
     })
-    .state('app.userlist', {
+    .state('admin.userlist', {
       url: '/user-lists',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-lists></user-lists>'
         }
       }
     })
-    .state('app.useredit', {
+    .state('admin.useredit', {
       url: '/user-edit/:userId',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-edit></user-edit>'
         }
       },
@@ -83,35 +121,35 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         userId: null
       }
     })
-    .state('app.userroles', {
+    .state('admin.userroles', {
       url: '/user-roles',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-roles></user-roles>'
         }
       }
     })
-    .state('app.userpermissions', {
+    .state('admin.userpermissions', {
       url: '/user-permissions',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-permissions></user-permissions>'
         }
       }
     })
-    .state('app.userpermissionsadd', {
+    .state('admin.userpermissionsadd', {
       url: '/user-permissions-add',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-permissions-add></user-permissions-add>'
         }
       },
@@ -119,13 +157,13 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         alerts: null
       }
     })
-    .state('app.userpermissionsedit', {
+    .state('admin.userpermissionsedit', {
       url: '/user-permissions-edit/:permissionId',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-permissions-edit></user-permissions-edit>'
         }
       },
@@ -134,13 +172,13 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         permissionId: null
       }
     })
-    .state('app.userrolesadd', {
+    .state('admin.userrolesadd', {
       url: '/user-roles-add',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-roles-add></user-roles-add>'
         }
       },
@@ -148,13 +186,13 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         alerts: null
       }
     })
-    .state('app.userrolesedit', {
+    .state('admin.userrolesedit', {
       url: '/user-roles-edit/:roleId',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<user-roles-edit></user-roles-edit>'
         }
       },
@@ -163,27 +201,20 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         roleId: null
       }
     })
-    .state('app.widgets', {
-      url: '/widgets',
-      data: {
-        auth: true
-      },
-      views: {
-        'main@app': {
-          template: '<widgets></widgets>'
-        }
-      }
-    })
-    .state('login', {
+
+
+    // Hành động của admin
+
+    // Đăng nhập admin
+    .state('admin.login', {
       url: '/login',
       views: {
-        'layout': {
+        'layout@': {
           templateUrl: getView('login')
-        },
-        'header@app': {},
-        'footer@app': {}
+        }
       },
       data: {
+        auth: false, // Khong can xac thuc
         bodyClass: 'hold-transition login-page'
       },
       params: {
@@ -191,82 +222,86 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         successMsg: null
       }
     })
-    .state('loginloader', {
-      url: '/login-loader',
-      views: {
-        'layout': {
-          templateUrl: getView('login-loader')
-        },
-        'header@app': {},
-        'footer@app': {}
-      },
-      data: {
-        bodyClass: 'hold-transition login-page'
-      }
-    })
 
-    .state('forgot_password', {
-      url: '/forgot-password',
-      views: {
-        'layout': {
-          templateUrl: getView('forgot-password')
-        },
-        'header@app': {},
-        'footer@app': {}
-      },
-      data: {
-        bodyClass: 'hold-transition login-page'
-      }
-    })
-    .state('reset_password', {
-      url: '/reset-password/:email/:token',
-      views: {
-        'layout': {
-          templateUrl: getView('reset-password')
-        },
-        'header@app': {},
-        'footer@app': {}
-      },
-      data: {
-        bodyClass: 'hold-transition login-page'
-      }
-    })
-
-    .state('app.logout', {
+    // Đăng xuất admin
+    .state('admin.logout', {
       url: '/logout',
       views: {
-        'main@app': {
+        main: {
           controller: function ($rootScope, $scope, $auth, $state, AclService) {
             $auth.logout().then(function () {
               delete $rootScope.me
               AclService.flushRoles()
               AclService.setAbilities({})
-              $state.go('login')
+              $state.go('admin')
             })
           }
         }
+      },
+      data: {
+        auth: true // Can xac thuc
       }
     })
 
+    .state('admin.loginloader', {
+      url: '/login-loader',
+      views: {
+        'layout@': {
+          templateUrl: getView('login-loader')
+        }
+      },
+      data: {
+        auth: false,
+        bodyClass: 'hold-transition login-page'
+      }
+    })
+
+    // Quên mật khẩu
+    .state('admin.forgot_password', {
+      url: '/forgot-password',
+      views: {
+        'layout@': {
+          templateUrl: getView('forgot-password')
+        }
+      },
+      data: {
+        auth: false,
+        bodyClass: 'hold-transition login-page'
+      }
+    })
+    .state('admin.reset_password', {
+      url: '/reset-password/:email/:token',
+      views: {
+        'layout@': {
+          templateUrl: getView('reset-password')
+        }
+      },
+      data: {
+        auth: false,
+        bodyClass: 'hold-transition login-page'
+      }
+    })
+
+
     // Category
-    .state('app.categorylist', {
+    .state('admin.categorylist', {
       url: '/category-list',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<category-list></category-list>'
         }
       }
     })
-    .state('app.categoryadd', {
+    .state('admin.categoryadd', {
       url: '/category-add',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<category-add></category-add>'
         }
       },
@@ -274,13 +309,13 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         alerts: null
       }
     })
-    .state('app.categoryedit', {
+    .state('admin.categoryedit', {
       url: '/category-edit/:categoryId',
       data: {
         auth: true
       },
       views: {
-        'main@app': {
+        'main@admin': {
           template: '<category-edit></category-edit>'
         }
       },
@@ -289,5 +324,50 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         categoryId: null
       }
     })
+
+    // Posts
+    .state('admin.postlist', {
+      url: '/post-list',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@admin': {
+          template: '<post-list></post-list>'
+        }
+      }
+    })
+    .state('admin.postadd', {
+      url: '/post-add',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@admin': {
+          template: '<post-add></post-add>'
+        }
+      },
+      params: {
+        alerts: null
+      }
+    })
+    .state('admin.postedit', {
+      url: '/post-edit/:postId',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@app': {
+          template: '<post-edit></post-edit>'
+        }
+      },
+      params: {
+        alerts: null,
+        categoryId: null
+      }
+    })
+
+
+
 
 }

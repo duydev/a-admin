@@ -3,12 +3,13 @@ export function RoutesRun ($rootScope, $state, $auth, AclService, $timeout, API,
 
   AclService.resume()
 
+  // Kiểm tra đăng nhập
   /*eslint-disable */
   let deregisterationCallback = $rootScope.$on('$stateChangeStart', function (event, toState) {
     if (toState.data && toState.data.auth) {
       if (!$auth.isAuthenticated()) {
         event.preventDefault()
-        return $state.go('login')
+        return $state.go('admin.login')
       }
     }
 

@@ -27,8 +27,9 @@ class CategoryController extends Controller
 
   public function create()
     {
-        $category = Category::insert([
-            'name' => Input::get('name')
+        $category = Category::create([
+            'name' => Input::get('name'),
+            'slug' => Input::get('slug')
         ]);
 
         return response()->success(compact('category'));
@@ -38,8 +39,9 @@ class CategoryController extends Controller
   {
       $userForm = array_dot(
           app('request')->only(
+              'data.id',
               'data.name',
-              'data.id'
+              'data.slug'
           )
       );
 
@@ -49,11 +51,13 @@ class CategoryController extends Controller
 
       $this->validate($request, [
           'data.id' => 'required|integer',
-          'data.name' => 'required|min:3'
+          'data.name' => 'required|min:3',
+          'data.slug' => 'required|min:3'
       ]);
 
       $userData = [
-          'name' => $userForm['data.name']
+          'name' => $userForm['data.name'],
+          'slug' => $userForm['data.slug']
       ];
 
       $affectedRows = Category::where('id', '=', $categoryId)->update($userData);

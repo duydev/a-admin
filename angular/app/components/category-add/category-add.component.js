@@ -21,7 +21,8 @@ class CategoryAddController{
 
       Category
         .post({
-          'name': this.name
+          'name': this.name,
+          'slug': this.slug
         })
         .then(function () {
           let alert = { type: 'success', 'title': 'Thành công!', msg: 'Chủ đề đã được thêm.' }

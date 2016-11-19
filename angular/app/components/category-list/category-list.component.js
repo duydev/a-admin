@@ -19,6 +19,7 @@ class CategoryListController{
           this.dtColumns = [
             DTColumnBuilder.newColumn('id').withTitle('ID'),
             DTColumnBuilder.newColumn('name').withTitle('Tên'),
+            DTColumnBuilder.newColumn('slug').withTitle('SEO URL'),
             DTColumnBuilder.newColumn(null).withTitle('Hành động').notSortable()
               .renderWith(actionsHtml)
           ]

@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->string('short_content');
             $table->text('content');
@@ -24,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -36,7 +38,7 @@ class CreatePostsTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('posts', function (Blueprint $table) {
-           $table->dropForeign(['category_id']);
+           $table->dropForeign(['category_id', 'user_id']);
         });
         Schema::drop('posts');
         Schema::enableForeignKeyConstraints();

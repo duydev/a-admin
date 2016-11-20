@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
   protected $fillable = [
+    'category_id',
+    'user_id',
     'title',
     'short_content',
     'content',
@@ -23,19 +25,23 @@ class Post extends Model
         $model->setCreatedAt($model->freshTimestamp());
     });
 
-    // create a event to happen on updating
     static::updating(function($table)  {
-    //  $table->updated_by = Auth::user()->username;
     });
 
-    // create a event to happen on deleting
     static::deleting(function($table)  {
-    //  $table->deleted_by = Auth::user()->username;
     });
 
-    // create a event to happen on saving
     static::saving(function($table)  {
-    //  $table->created_by = Auth::user()->username;
     });
   }
+
+  public function category() {
+    return $this->belongsTo('Category', 'parent_id');
+  }
+
+  public function user() {
+    return $this->belongsTo('Users', 'user_id');
+  }
+
+
 }

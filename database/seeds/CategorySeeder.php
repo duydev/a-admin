@@ -15,16 +15,19 @@ class CategorySeeder extends Seeder
 
       $data = [
         [
-            'name' => 'Hoạt Động',
-            'slug' => 'hoat-dong'
+          'parent_id' => 0,
+          'name' => 'Hoạt Động',
+          'slug' => 'hoat-dong'
         ],
         [
-            'name' => 'Kỹ Năng',
-            'slug' => 'ky-nang'
+          'parent_id' => 0,
+          'name' => 'Kỹ Năng',
+          'slug' => 'ky-nang'
         ],
         [
-            'name' => 'Văn Bản',
-            'slug' => 'van-ban'
+          'parent_id' => 0,
+          'name' => 'Văn Bản',
+          'slug' => 'van-ban'
         ]
       ];
 

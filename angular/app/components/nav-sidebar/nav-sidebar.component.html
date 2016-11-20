@@ -33,13 +33,17 @@
 
       <li class="treeview" ng-show="vm.can('manage.news')">
         <a href="javascript:void(0)">
-          <i class="fa fa-users"></i> <span>Tin Tức</span> <i class="fa fa-angle-left pull-right"></i>
+          <i class="fa fa-users"></i> <span>Bài viết</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
 
-          <li ng-show="vm.can('manage.category')" class="active"><a ui-sref='admin.categorylist'><i class="fa fa-circle-o"></i> <span>Chủ Đề</span></a></li>
+          <li ng-show="vm.can('manage.post')" class="active"><a ui-sref='admin.postlist'><i class="fa fa-circle-o"></i> <span>Tất cả bài viết</span></a></li>
 
-          <li ng-show="vm.can('manage.post')" class="active"><a ui-sref='admin.postlist'><i class="fa fa-circle-o"></i> <span>Bài Viết</span></a></li>
+          <li ng-show="vm.can('manage.post')" class="active"><a ui-sref='admin.postadd'><i class="fa fa-circle-o"></i> <span>Viết bài mới</span></a></li>
+
+          <li ng-show="vm.can('manage.category')" class="active"><a ui-sref='admin.category'><i class="fa fa-circle-o"></i> <span>Chuyên mục</span></a></li>
+
+
 
         </ul>
       </li>

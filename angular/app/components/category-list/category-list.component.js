@@ -44,6 +44,55 @@ class CategoryListController{
     }
   }
 
+  update ()
+  {
+    let API = this.API
+    let $scope = this.$scope
+    let $compile = this.$compile
+    let DTOptionsBuilder = this.DTOptionsBuilder
+    let DTColumnBuilder = this.DTColumnBuilder
+
+    let Category = API.all('category')
+
+    Category.getList()
+      .then((response) => {
+        let dataSet = response.plain()
+
+        this.dtOptions = DTOptionsBuilder.newOptions()
+          .withOption('data', dataSet)
+          .withOption('createdRow', createdRow)
+          .withOption('responsive', true)
+          //.withLanguageSource('//cdn.datatables.net/plug-ins/1.10.12/i18n/Vietnamese.json')
+          .withBootstrap()
+
+        this.dtColumns = [
+          DTColumnBuilder.newColumn('id').withTitle('ID'),
+          DTColumnBuilder.newColumn('name').withTitle('Tên'),
+          DTColumnBuilder.newColumn('slug').withTitle('SEO URL'),
+          DTColumnBuilder.newColumn(null).withTitle('Hành động').notSortable()
+            .renderWith(actionsHtml)
+        ]
+
+        this.displayTable = true
+      })
+
+    let createdRow = (row) => {
+      $compile(angular.element(row).contents())($scope)
+    }
+
+    let actionsHtml = (data) => {
+      return `
+                <a class="btn btn-xs btn-warning" ui-sref="admin.categoryedit({categoryId: ${data.id}})">
+                    <i class="fa fa-edit"></i>
+                </a>
+                &nbsp
+                <button class="btn btn-xs btn-danger" ng-click="vm.delete(${data.id})">
+                    <i class="fa fa-trash-o"></i>
+                </button>`
+    }
+
+  }
+
   delete (categoryId) {
       let API = this.API
       let $state = this.$state
@@ -76,6 +125,7 @@ class CategoryListController{
 
   $onInit(){
   }
+
 }
 
 export const CategoryListComponent = {

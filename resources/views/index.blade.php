@@ -29,11 +29,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body route-bodyclass>
+<body route-bodyclass ui-router-styles>
     <div class="wrapper">
         <div ui-view="layout"></div>
         <div class="control-sidebar-bg"></div>
     </div>
     <script src="{!! elixir('js/final.js') !!}" async defer></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
 </body>
 </html>

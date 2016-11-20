@@ -4,7 +4,7 @@ class PostListController{
     this.API = API
     this.$state = $state
 
-    let Posts = this.API.all('posts')
+    let Posts = API.service('posts')
 
     Posts.getList()
       .then((response) => {

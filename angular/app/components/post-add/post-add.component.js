@@ -1,8 +1,18 @@
 class PostAddController{
-    constructor(){
-        'ngInject';
+    constructor($scope, API){
+      'ngInject';
 
-        //
+      let Category = API.service('category')
+
+      Category.getList()
+        .then( res => {
+          $scope.category = res.plain()
+        })
+
+      $scope.editorOptions = {
+          // settings more at http://docs.ckeditor.com/#!/guide/dev_configuration
+      };
+
     }
 
     $onInit(){

@@ -25,11 +25,15 @@ class CategoryAddController{
           'slug': this.slug
         })
         .then(function () {
+
           let alert = { type: 'success', 'title': 'Thành công!', msg: 'Chủ đề đã được thêm.' }
-          $state.go($state.current, { alerts: alert})
+          $state.go($state.current, { alerts: alert })
+
         }, function (response) {
+
           let alert = { type: 'error', 'title': 'Lỗi!', msg: response.data.message }
           $state.go($state.current, { alerts: alert})
+
         })
 
     } else {

@@ -32,6 +32,10 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         main: {}
       },
       data: {
+        css: [
+          'css/style.css',
+          'css/custom.css'
+        ],
         bodyClass: ''
       }
     })
@@ -283,31 +287,21 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
 
 
     // Category
-    .state('admin.categorylist', {
-      url: '/category-list',
+    .state('admin.category', {
+      url: '/category',
       data: {
         auth: true
       },
       views: {
         'main@admin': {
-          template: '<category-list></category-list>'
-        }
-      }
-    })
-    .state('admin.categoryadd', {
-      url: '/category-add',
-      data: {
-        auth: true
-      },
-      views: {
-        'main@admin': {
-          template: '<category-add></category-add>'
+          templateUrl: getView('admin-category')
         }
       },
       params: {
         alerts: null
       }
     })
+
     .state('admin.categoryedit', {
       url: '/category-edit/:categoryId',
       data: {

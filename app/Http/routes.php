@@ -39,10 +39,11 @@ $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super|admin.user']]
 });
 
 $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super']], function ($api) {
-
     // Category
     $api->get('category', 'CategoryController@getAll');
     $api->get('category/{id}', 'CategoryController@get');
+    $api->get('categorylist', 'CategoryController@parentlist');
+
     $api->post('category', 'CategoryController@create');
     $api->put('category', 'CategoryController@update');
     $api->delete('category/{id}', 'CategoryController@delete');
@@ -53,5 +54,4 @@ $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super']], function 
     $api->post('post', 'PostsController@create');
     $api->put('post', 'PostsController@update');
     $api->delete('post/{id}', 'PostsController@delete');
-
 });

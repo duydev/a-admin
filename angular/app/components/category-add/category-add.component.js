@@ -1,5 +1,5 @@
 class CategoryAddController{
-  constructor (API, $state, $stateParams) {
+  constructor (API, $state, $stateParams, $scope) {
     'ngInject'
 
     this.$state = $state
@@ -7,13 +7,22 @@ class CategoryAddController{
     this.API = API
     this.alerts = []
 
+    let ParentList = this.API.all('categorylist')
+    ParentList.getList()
+      .then( res => {
+        $scope.parentlist = res.plain()
+      })
+
+
     if ($stateParams.alerts) {
       this.alerts.push($stateParams.alerts)
     }
+
   }
 
   save (isValid) {
-    this.$state.go(this.$state.current, {}, { alerts: 'test' })
+    this.alerts = []
+    //this.$state.go(this.$state.current, {}, { alerts: 'test' })
     if (isValid) {
 
       let Category = this.API.all('category')
@@ -22,6 +31,7 @@ class CategoryAddController{
       Category
         .post({
           'name': this.name,
+          'parent_id': this.parent_id,
           'slug': this.slug
         })
         .then(function () {

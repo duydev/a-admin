@@ -31,7 +31,7 @@ class CategorySeeder extends Seeder
         ]
       ];
 
-      Category::create($data);
-
+      //Category::create($data);
+      Category::insert($data);
     }
 }

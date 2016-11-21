@@ -17,6 +17,14 @@
         <p ng-show="categoryForm.name.$error.required && ( vm.formSubmitted || categoryForm.name.$touched)" class="help-block">Thông tin này là bắt buộc.</p>
       </div>
 
+      <div class="form-group">
+        <label for="name" class="control-label"> Chuyên mục cha </label>
+        <select class="form-control" ng-model="vm.parent_id" ng-init="vm.parent_id = 1">
+          <option ng-repeat="p in parentlist" value="{{p.id}}">{{p.name}}</option>
+        </select>
+        {{vm.parent_id}}
+      </div>
+
       <div class="form-group" ng-class="{ 'has-error': categoryForm.slug.$invalid && ( vm.formSubmitted || categoryForm.slug.$touched) }">
         <label for="slug" class="control-label"> SEO URL </label>
         <input type="text" class="form-control" ng-model="vm.slug" name="slug" placeholder="SEO URL" required>

@@ -26,5 +26,6 @@ angular.module('app.components', [
   'datatables.bootstrap',
   'checklist-model',
   'uiRouterStyles',
-  'ngCkeditor'
+  'ngCkeditor',
+  'angularFileUpload'
 ])

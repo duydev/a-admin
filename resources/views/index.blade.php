@@ -39,5 +39,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+
 </body>
 </html>

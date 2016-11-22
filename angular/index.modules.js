@@ -27,5 +27,6 @@ angular.module('app.components', [
   'checklist-model',
   'uiRouterStyles',
   'ngCkeditor',
-  'angularFileUpload'
+  'angularFileUpload',
+  'angular-speakingurl'
 ])

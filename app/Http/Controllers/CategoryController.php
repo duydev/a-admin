@@ -14,7 +14,40 @@ class CategoryController extends Controller
 
     public function getAll()
     {
-        $category = Category::all();
+        // Lấy tất cả chuyên mục
+        $cats = Category::all();
+        $category = collect();
+
+        // Đặt key cho tập hợp
+        $cats = $cats->keyBy('id');
+
+        // Hàng đợi
+        $queue = [0];
+        $name = [""];
+
+        //while (!$cats->isEmpty()) {
+        while (count($queue) > 0) {
+            // Tìm con
+            $child = $cats->where('parent_id', end($queue))->first();
+            // Nếu không tìm thấy
+            if (!isset($child)) {
+                // Bỏ phần tử cuối trong hàng đợi
+                array_pop($queue);
+                array_pop($name);
+            } else {
+                // Đổi tên
+                if (end($queue) > 0) {
+                    $child->name = end($name).' > '.$child->name;
+                }
+                // Đưa vào tập hợp kết quả
+                $category->push($child);
+                // Đưa id vào hàng đợi
+                array_push($queue, $child->id);
+                array_push($name, $child->name);
+                // Xóa child trong tập cats
+                $cats->forget($child->id);
+            }
+        }
 
         return response()->success(compact('category'));
     }
@@ -71,6 +104,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $category = Category::find($id);
+        // Xử lý ràng buộc khi xóa
         $category->delete();
         return response()->success('success');
     }
@@ -89,18 +123,18 @@ class CategoryController extends Controller
         $queue = [0];
         $name = [""];
 
-        while (!$cats->isEmpty()) {
+        //while (!$cats->isEmpty()) {
+        while (count($queue) > 0) {
             // Tìm con
             $child = $cats->where('parent_id', end($queue))->first();
             // Nếu không tìm thấy
-            if(!isset($child)) {
+            if (!isset($child)) {
                 // Bỏ phần tử cuối trong hàng đợi
                 array_pop($queue);
                 array_pop($name);
             } else {
                 // Đổi tên
-                if(end($queue) > 0)
-                {
+                if (end($queue) > 0) {
                     $child->name = end($name).' > '.$child->name;
                 }
                 // Đưa vào tập hợp kết quả
@@ -111,7 +145,6 @@ class CategoryController extends Controller
                 // Xóa child trong tập cats
                 $cats->forget($child->id);
             }
-
         }
 
         return response()->success(compact('categorylist'));

@@ -50,8 +50,7 @@
         </div>
         <div class="box-body">
           <div class="form-group" ng-class="{ 'has-error': postForm.category_id.$invalid && ( vm.formSubmitted || postForm.category_id.$touched) }">
-            <select ng-model="category_id" class="form-control">
-              <option ng-repeat="x in category" value="{{x.id}}">{{x.name}}</option>
+            <select class="form-control" ng-init="vm.category_id = vm.category_id || vm.category[0]" ng-model="vm.category_id" ng-options="p.id as p.name for p in vm.category">
             </select>
             <p ng-show="postForm.category_id.$error.required && ( vm.formSubmitted || postForm.category_id.$touched)" class="help-block">Thông tin này là bắt buộc.</p>
           </div>
@@ -69,7 +68,8 @@
             <div ng-thumb="{ file: item._file, height: 100 }"></div>
           </div>
           <input type="file" id="upload" nv-file-select uploader="uploader" class="hidden" />
-          <button ng-click="showUpload()" class="btn btn-primary">Chọn ảnh</button>
+          <input type="hidden" id="image" name="image" ng-model="vm.image" ng-init="vm.image=''">
+          <button ng-click="vm.showUpload()" class="btn btn-primary">Chọn ảnh</button>
         </div>
       </div>
     </div>

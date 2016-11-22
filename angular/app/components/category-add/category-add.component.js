@@ -1,16 +1,17 @@
 class CategoryAddController{
-  constructor (API, $state, $stateParams, $scope) {
+  constructor (API, $state, $stateParams, $scope, $speakingurl) {
     'ngInject'
 
     this.$state = $state
     this.formSubmitted = false
     this.API = API
+    this.$speakingurl = $speakingurl
     this.alerts = []
 
     let ParentList = this.API.all('categorylist')
     ParentList.getList()
       .then( res => {
-        $scope.parentlist = res.plain()
+        this.parentlist = res.plain()
       })
 
 
@@ -18,6 +19,11 @@ class CategoryAddController{
       this.alerts.push($stateParams.alerts)
     }
 
+  }
+
+  genSlug() {
+    let name = this.name
+    this.slug = this.$speakingurl.getSlug(name, {lang: 'vn'})
   }
 
   save (isValid) {
@@ -37,13 +43,23 @@ class CategoryAddController{
         .then(function () {
 
           let alert = { type: 'success', 'title': 'Thành công!', msg: 'Chủ đề đã được thêm.' }
-          $state.go($state.current, { alerts: alert })
+          //$state.go($state.current, { alerts: alert })
 
+          $state.transitionTo($state.current, { alerts: alert }, {
+              reload: true,
+              inherit: false,
+              notify: true
+          })
         }, function (response) {
 
           let alert = { type: 'error', 'title': 'Lỗi!', msg: response.data.message }
-          $state.go($state.current, { alerts: alert})
+          //$state.go($state.current, { alerts: alert})
 
+          $state.transitionTo($state.current, { alerts: alert }, {
+              reload: true,
+              inherit: false,
+              notify: true
+          })
         })
 
     } else {

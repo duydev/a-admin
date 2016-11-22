@@ -1,10 +1,12 @@
 class PostAddController{
-    constructor($scope, API, FileUploader){
+    constructor($scope, API, FileUploader, $http){
       'ngInject';
+
+      this.API = API
 
       // Khoi tao file uploader
       var uploader = $scope.uploader = new FileUploader({
-        url: 'upload.php',
+        url: '/api/upload',
         queueLimit: 1 // Upload 1 file duy nhat
       });
 
@@ -17,28 +19,46 @@ class PostAddController{
         }
       });
 
-      // Handle uploader event
-      uploader.onAfterAddingFile = function(fileItem) {
-        console.info('onAfterAddingFile', fileItem);
-      };
-
-      $scope.showUpload = function()
+      this.showUpload = function()
       {
         uploader.clearQueue();
         document.getElementById('upload').click()
       }
 
+      // Handle uploader event
+      uploader.onAfterAddingFile = function(fileItem) {
+        /*uploader.uploadItem(fileItem)
+            .then(res => {
+                console.debug(res)
+            })*/
+        console.debug(fileItem)
 
-      let Category = API.service('category')
+        let formData = new FormData()
+        formData.append('image', fileItem._file)
 
-      Category.getList()
-        .then( res => {
-          $scope.category = res.plain()
+        $http.post('/api/upload', formData,{
+            transformRequest:angular.identity,
+            headers:{'Content-type':undefined}
+        }).then(res => {
+            this.image = res.plain()
+        })
+
+
+      }
+
+
+
+
+      let Category = this.API.all('category')
+
+    Category.getList()
+        .then((response) => {
+            this.category = response.plain()
         })
 
       $scope.editorOptions = {
           // settings more at http://docs.ckeditor.com/#!/guide/dev_configuration
-      };
+      }
 
     }
 

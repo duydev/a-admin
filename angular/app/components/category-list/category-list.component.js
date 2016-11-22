@@ -1,5 +1,5 @@
 class CategoryListController{
-  constructor ($scope, $state, $compile, DTOptionsBuilder, DTColumnBuilder, API) {
+  constructor ($scope, $state, $stateParams, $compile, DTOptionsBuilder, DTColumnBuilder, API) {
     'ngInject'
     this.API = API
     this.$state = $state
@@ -12,9 +12,10 @@ class CategoryListController{
 
         this.dtOptions = DTOptionsBuilder.newOptions()
           .withOption('data', dataSet)
+          .withOption('order', [1, 'asc'])
           .withOption('createdRow', createdRow)
           .withOption('responsive', true)
-          //.withLanguageSource('//cdn.datatables.net/plug-ins/1.10.12/i18n/Vietnamese.json')
+          //.withLanguageSource('https://cdn.datatables.net/plug-ins/1.10.12/i18n/Vietnamese.json')
           .withBootstrap()
 
         this.dtColumns = [

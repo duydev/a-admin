@@ -54,4 +54,7 @@ $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super']], function 
     $api->post('post', 'PostsController@create');
     $api->put('post', 'PostsController@update');
     $api->delete('post/{id}', 'PostsController@delete');
+
+    // Image upload
+    $api->post('upload', 'ImageController@upload');
 });

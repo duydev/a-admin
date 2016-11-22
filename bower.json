@@ -29,7 +29,9 @@
     "ng-ckeditor": "^0.2.1",
     "angular-ui-router-styles": "^1.1.0",
     "ng-flow": "~2",
-    "angular-file-upload": "^2.3.4"
+    "angular-file-upload": "^2.3.4",
+    "speakingurl": "^10.0.0",
+    "angular-speakingurl": "^1.1.0"
   },
   "resolutions": {
     "angular": "~1.5.x"
